@@ -1,0 +1,4 @@
+== jQuery Form Field Validation modeled after ActiveRecord
+
+More documentation to come soon...
+For now look at the JS file itself for what I have so far.
