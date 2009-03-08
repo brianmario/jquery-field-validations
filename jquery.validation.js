@@ -207,8 +207,6 @@
         return this.each(function() {
             var el = $(this);
             // TODO: I18n
-            var thousandsSep = ',';
-            var decimalSep = '.';
             var settings = $.extend({
                                 invalidClass: 'invalid-numericality',
                                 onlyInteger: false,
@@ -218,14 +216,7 @@
 
             el.bind(settings.validatesOn.join(' '), function() {
                 if (settings.when(el)) {
-                    var validationRegex = function() {
-                        if (settings.onlyInteger) {
-                            return "[^0-9]";
-                        } else {
-                            return "[^0-9"+decimalSep+thousandsSep+"]";
-                        }
-                    }();
-                    if (el.val().match(validationRegex) !== null) {
+                    if (isNaN(el.val().replace(/,/g, ''))) {
                         el.trigger('invalid')
                             .trigger('invalid-numericality')
                             .closest('fieldset')
